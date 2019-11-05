@@ -1,2 +1,9 @@
-# simple-react-tailwind-tutorial
-A quck how-to guide for creating a simple, multi-page website with React &amp; Tailwind CSS.
+# Tutorial: Make A Simple Website Using React & Tailwind CSS
+A quick how-to guide for generating a simple, multi-page website.
+
+## What You Need
+- Terminal / Command Line
+- IDE (I recommend [Atom](https://github.com/atom/atom))
+
+## Getting Started
+
