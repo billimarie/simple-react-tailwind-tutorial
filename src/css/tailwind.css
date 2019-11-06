@@ -1,0 +1,12 @@
+
+/* Init Tailwind */
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
+/* Custom CSS */
+.App-logo {
+  width: 300px;
+}
