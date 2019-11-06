@@ -1,7 +1,9 @@
 # Tutorial: A Simple Website with React, Tailwind CSS, & PostCSS
 > Updated: November 6th 2019
 
-Create a simple, multi-page website that watches your CSS builds & refreshes your app accordingly.
+Create a simple, multi-page website that watches your CSS builds & refreshes your app accordingly:
+
+![react-tailwind-links](https://user-images.githubusercontent.com/6895471/68329481-27b4cf00-0086-11ea-93ee-580fcef18c6e.gif)
 
 ## What You Need
 - Terminal / Command Line
