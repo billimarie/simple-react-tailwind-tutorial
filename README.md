@@ -1,4 +1,6 @@
 # Tutorial: Make A Simple Website Using React & Tailwind CSS
+> Last Updated: November 5th 2019 (work in progress)
+
 A quick how-to guide for generating a simple, multi-page website.
 
 ## What You Need
@@ -27,6 +29,16 @@ $ npm install react-router-dom tailwindcss autoprefixer postcss-cli
 $ npm run start
 ```
 A new window should open up (`localhost:3000`) & display the standard new React App screen.
+
+## Connecting Tailwind
+1.
+2.
+3.
+
+## Creating Components
+1.
+2.
+3.
 
 ## Troubleshooting
 
