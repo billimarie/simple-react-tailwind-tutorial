@@ -1,68 +1,223 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Tutorial: A Simple Website with React, Tailwind CSS, & PostCSS
+> Updated: November 6th 2019
 
-## Available Scripts
+Create a simple, multi-page website that watches your CSS builds & refreshes your app accordingly.
 
-In the project directory, you can run:
+## What You Need
+- Terminal / Command Line
+- IDE (I recommend [Atom](https://github.com/atom/atom))
 
-### `npm start`
+### Versions
+- Node: 8.11.3+
+- npm: 6.12.1+
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Getting Started
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+### 1. Initialize your React app using `create-react-app`:
+```
+$ npx create-react-app react-tailwind-site
+```
 
-### `npm test`
+### 2. Change directories into the app & install `react-router-dom` (for links), `tailwindcss` (for Tailwind CSS), `autoprefixer`, & `postcss-cli` (to watch & reload CSS updates):
+```
+$ cd react-tailwind-site
+$ npm install react-router-dom tailwindcss autoprefixer postcss-cli
+```
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 3. Test it out:
+```
+$ npm run start
+```
+A new window should open up (`localhost:3000`) & display the standard new React App screen.
 
-### `npm run build`
+(Having trouble? See [Troubleshooting](#troubleshooting)).
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Setting Up Tailwind
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+### 1. Initialize Tailwind & PostCSS:
+```
+$ npx tailwind init tailwind.config.js
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 2. Create Tailwind.css:
+```
+$ cd src ; mkdir css ; cd css ; touch tailwind.css // Linux
+$ cd src & mkdir css & cd css & touch tailwind.css // Windows
+```
 
-### `npm run eject`
+### 3. Add to `src/css/tailwind.css`:
+```
+/* Init Tailwind */
+@tailwind base;
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+@tailwind components;
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+@tailwind utilities;
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+/* Custom CSS */
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Connecting Tailwind & React
 
-## Learn More
+### 1. Modify your `package.json` with these updated scripts:
+```
+"scripts": {
+    "build:css": "postcss src/css/tailwind.css -o src/index.css",
+    "watch:css": "postcss src/css/tailwind.css -o src/index.css -w",
+    "start": "npm watch:css && react-scripts start",
+    "build": "npm run build:css && react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+}
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 2. Modify `App.js`:
+```
+import './css/tailwind.css';     /* Replacing App.css */
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### 3. Modify `index.js`:
+```
+import './index.css';    /* Replacing App.css */
+```
 
-### Code Splitting
+### 4. Let's restart the app!
+```
+$ npm run start
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+You should see an updated `localhost:3000` page.
 
-### Analyzing the Bundle Size
+To test that it's watching your CSS changes, go back to `src/css/tailwind.css` & add a new style under "Custom CSS." Your app should refresh with the changes automatically:
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+![react-tailwind-watching-loop](https://user-images.githubusercontent.com/6895471/68322467-44e2a100-0078-11ea-811e-13f8456cdf5f.gif)
 
-### Making a Progressive Web App
+## Creating Components
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+### 1. Create a folder called "Components." It should be in your source files (`/src/components/`)
+```
+$ mkdir components
+```
 
-### Advanced Configuration
+### 2. To start off, let's build a header.
+```
+$ cd src/components ; touch Header.js // Linux
+$ cd src/components & touch Header.js // Windows
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+### 3. In Header.js:
+```
+import React from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link } from 'react-router-dom';
 
-### Deployment
+const Header = () => (
+  <header className="bg-gray-100 p-6">
+    <div className="flex items-center justify-between flex-wrap">
+      <div className="block">
+        <Link to="/"><span className="font-semibold text-xl tracking-tight text-gray-800">Title Goes Here</span></Link>
+      </div>
+      <nav className="block">
+        <Link to="/"><span className="inline-block text-gray-800 hover:text-gray-600 mr-4">Home</span></Link>
+        <Link to="/"><span className="inline-block text-gray-800 hover:text-gray-600 mr-4">About</span></Link>
+        <Link to="/"><span className="inline-block text-gray-800 hover:text-gray-600 mr-4">Contact</span></Link>
+        <Link to="/"><span className="inline-block px-4 py-2 leading-none border rounded text-gray-600 border-gray-600 hover:text-gray-900 hover:border-gray-900">Login</span></Link>
+      </nav>
+    </div>
+  </header>
+);
+export default Header;
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+### 4. Go to `App.js` and add the following imports
+```
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from 'react-router-dom';
+import Header from './components/Header.js';
+```
 
-### `npm run build` fails to minify
+Scroll down and replace the content React automatically generated with the following:
+```
+const App = () => (
+  <Router>
+    <Header />
+  </Router>
+);
+export default App;
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+### 5. Now that we've made the universal header, let's create the pages for Home, About, & Contact:
+```
+$ touch Home.js About.js Contact.js
+```
+
+Open `Home.js` add the following:
+
+```
+import React from 'react';
+
+const Home = () => (
+  <h2>Home</h2>
+);
+
+export default Home;
+```
+
+You can reuse this code for your `About.js` and `Contact.js` pages.
+
+### 6. Again, back to `App.js` to import your new components:
+
+```
+import Home from './components/Home.js';
+import About from './components/About.js';
+import Contact from './components/Contact.js';
+```
+
+Scroll down to modify:
+
+```
+<Router>
+  <Header />
+  <Switch>
+    <Route exact path="/">
+      <Home />
+    </Route>
+
+    <Route exact path="/about">
+      <About />
+    </Route>
+
+    <Route exact path="/contact">
+      <Contact />
+    </Route>
+  </Switch>
+</Router>
+```
+
+### 7. Modify `index.js` to activate the router:
+```
+import { BrowserRouter } from 'react-router-dom';
+
+ReactDOM.render(<BrowserRouter><App /></BrowserRouter>, document.getElementById('root'));
+```
+
+### 8. You're all set! Restart the app to see your new changes.
+```
+$ npm run start
+```
+
+You should be able to see the new header, and click on each navigation item to take you to a new page:
+
+![react-tailwind-links](https://user-images.githubusercontent.com/6895471/68329481-27b4cf00-0086-11ea-93ee-580fcef18c6e.gif)
+
+## Troubleshooting
+
+- If you receive an error about ServiceWorker.js, go to `index.js` and comment it out. (You can also delete the file itself under `src/serviceWorker.js`.)
+- Additionally, if you're running Windows, make sure system32 has been added to your PATH (see: [this GitHub issue](https://medium.com/r/?url=https%3A%2F%2Fgithub.com%2Ffacebook%2Fcreate-react-app%2Fissues%2F7061)).
