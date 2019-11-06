@@ -1,7 +1,7 @@
 # Tutorial: Make A Simple Website Using React & Tailwind CSS
-> Last Updated: November 5th 2019 (work in progress)
+> Last Updated: November 6th 2019 (work in progress)
 
-A quick how-to guide for generating a simple, multi-page website.
+A quick how-to guide for creating a simple, multi-page website with automatic CSS reloads.
 
 ## What You Need
 - Terminal / Command Line
@@ -18,7 +18,7 @@ A quick how-to guide for generating a simple, multi-page website.
 $ npx create-react-app react-tailwind-site
 ```
 
-**2. Change directories into the app & install `react-router-dom` (for links), `tailwindcss` (for Tailwind CSS), `autoprefixer`, & `postcss-cli` (both are optional, but highly recommended for processing & watching your CSS.**
+**2. Change directories into the app & install `react-router-dom` (for links), `tailwindcss` (for Tailwind CSS), `autoprefixer`, & `postcss-cli` (to watch & reload CSS updates).**
 ```
 $ cd react-tailwind-site
 $ npm install react-router-dom tailwindcss autoprefixer postcss-cli
@@ -30,10 +30,65 @@ $ npm run start
 ```
 A new window should open up (`localhost:3000`) & display the standard new React App screen.
 
-## Connecting Tailwind
-1.
-2.
-3.
+(Having trouble? See [Troubleshooting](#troubleshooting)).
+
+## Setting Up Tailwind
+**1. Initialize Tailwind & PostCSS:**
+```
+$ npx tailwind init tailwind.config.js
+```
+
+**2. Create Tailwind.css:**
+```
+$ cd src ; mkdir css ; cd css ; touch tailwind.css // Linux
+$ cd src & mkdir css & cd css & touch tailwind.css // Windows
+```
+
+**3. Add to `src/css/tailwind.css`:**
+```
+/* Init Tailwind */
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
+/* Custom CSS */
+```
+
+## Connecting Tailwind & React
+**1. Modify your `package.json` with these updated scripts:***
+```
+"scripts": {
+    "build:css": "postcss src/css/tailwind.css -o src/index.css",
+    "watch:css": "postcss src/css/tailwind.css -o src/index.css -w",
+    "start": "npm watch:css && react-scripts start",
+    "build": "npm run build:css && react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+}
+```
+
+**2. Modify `App.js`:**
+```
+import './css/tailwind.css';     /* Replacing App.css */
+```
+
+**3. Modify `index.js`:**
+```
+import './index.css';    /* Replacing App.css */
+```
+
+**4. Let's restart the app!**
+```
+$ npm run start
+```
+
+You should see an updated `localhost:3000` page.
+
+To test that it's watching your CSS changes, go back to `src/css/tailwind.css` & add a new style under "Custom CSS." Your app should refresh with the changes automatically:
+
+![react-tailwind-watching-loop](https://user-images.githubusercontent.com/6895471/68322467-44e2a100-0078-11ea-811e-13f8456cdf5f.gif)
 
 ## Creating Components
 1.
@@ -42,4 +97,5 @@ A new window should open up (`localhost:3000`) & display the standard new React 
 
 ## Troubleshooting
 
-- If you receive an error about serviceWorker.js, feel free to delete it.
+- If you receive an error about ServiceWorker.js, go to `index.js` and comment it out. (You can also delete the file itself under `src/serviceWorker.js`.)
+- Additionally, if you're running Windows, make sure system32 has been added to your PATH (see: [this GitHub issue](https://medium.com/r/?url=https%3A%2F%2Fgithub.com%2Ffacebook%2Fcreate-react-app%2Fissues%2F7061)).
