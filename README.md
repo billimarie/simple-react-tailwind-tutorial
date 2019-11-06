@@ -219,6 +219,10 @@ You should be able to see the new header, and click on each navigation item to t
 
 ![react-tailwind-links](https://user-images.githubusercontent.com/6895471/68329481-27b4cf00-0086-11ea-93ee-580fcef18c6e.gif)
 
+## Complete!
+
+If you get stuck or have any questions, feel free to send me a message. I'd love to see what you create with this; submit a pull request with your screenshot or link to be added to this GitHub repo.
+
 ## Troubleshooting
 
 - If you receive an error about ServiceWorker.js, go to `index.js` and comment it out. (You can also delete the file itself under `src/serviceWorker.js`.)
