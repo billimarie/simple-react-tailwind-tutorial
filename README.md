@@ -66,7 +66,7 @@ $ cd src & mkdir css & cd css & touch tailwind.css // Windows
 "scripts": {
     "build:css": "postcss src/css/tailwind.css -o src/index.css",
     "watch:css": "postcss src/css/tailwind.css -o src/index.css -w",
-    "start": "npm watch:css && react-scripts start",
+    "start": "npm watch:css & react-scripts start",
     "build": "npm run build:css && react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
