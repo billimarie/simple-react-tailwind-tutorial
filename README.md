@@ -234,7 +234,7 @@ If you get stuck or have any questions, feel free to send me a message. I'd love
 - If you receive an error about ServiceWorker.js, go to `index.js` and comment it out. (You can also delete the file itself under `src/serviceWorker.js`.)
 - Additionally, if you're running Windows, make sure system32 has been added to your PATH (see: [this GitHub issue](https://medium.com/r/?url=https%3A%2F%2Fgithub.com%2Ffacebook%2Fcreate-react-app%2Fissues%2F7061)).
 
-([Back to Top](#top))
+([Back to Top](#react-tutorials))
 
 # Tutorial 2
 
