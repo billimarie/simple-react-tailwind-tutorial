@@ -1,5 +1,11 @@
-# Tutorial: A Simple Website with React, Tailwind CSS, & PostCSS
-> Updated: November 6th 2019
+# React Tutorials
+> Updated: November 9th 2019
+
+## Table of Contents
+1. [Tutorial 1: A Simple Website with React, Tailwind CSS, & PostCSS](#tutorial-1)
+1. [Tutorial 2: Adding CSS Transitions](#tutorial-2)
+
+# Tutorial 1
 
 Create a simple, multi-page website that watches your CSS builds & refreshes your app accordingly.
 
@@ -64,7 +70,7 @@ $ cd src & mkdir css & cd css & touch tailwind.css // Windows
 "scripts": {
     "build:css": "postcss src/css/tailwind.css -o src/index.css",
     "watch:css": "postcss src/css/tailwind.css -o src/index.css -w",
-    "start": "npm watch:css && react-scripts start",
+    "start": "npm watch:css & react-scripts start",
     "build": "npm run build:css && react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
@@ -221,3 +227,11 @@ You should be able to see the new header, and click on each navigation item to t
 
 - If you receive an error about ServiceWorker.js, go to `index.js` and comment it out. (You can also delete the file itself under `src/serviceWorker.js`.)
 - Additionally, if you're running Windows, make sure system32 has been added to your PATH (see: [this GitHub issue](https://medium.com/r/?url=https%3A%2F%2Fgithub.com%2Ffacebook%2Fcreate-react-app%2Fissues%2F7061)).
+
+([Back to Top](#top))
+
+# Tutorial 2
+
+Adding CSS Transitions.
+
+## Getting Started
