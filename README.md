@@ -7,7 +7,9 @@
 
 # Tutorial 1
 
-Create a simple, multi-page website that watches your CSS builds & refreshes your app accordingly.
+Create a simple, multi-page website that watches your CSS changes & refreshes your app, accordingly.
+
+To view the Medium.com article: [Creating A Simple Website with React, Tailwind CSS, & PostCSS](https://medium.com/clocktwine/creating-a-simple-website-using-react-tailwind-css-postcss-6bbc419ded0c)
 
 ## What You Need
 - Terminal / Command Line
@@ -222,6 +224,10 @@ $ npm run start
 You should be able to see the new header, and click on each navigation item to take you to a new page:
 
 ![react-tailwind-links](https://user-images.githubusercontent.com/6895471/68329481-27b4cf00-0086-11ea-93ee-580fcef18c6e.gif)
+
+## Complete!
+
+If you get stuck or have any questions, feel free to send me a message. I'd love to see what you create with this; submit a pull request with your screenshot or link to be added to this GitHub repo.
 
 ## Troubleshooting
 
