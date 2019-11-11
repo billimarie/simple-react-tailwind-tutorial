@@ -241,3 +241,13 @@ If you get stuck or have any questions, feel free to send me a message. I'd love
 Adding CSS Transitions.
 
 ## Getting Started
+
+### 1. Add `React Transition Group`:
+```
+$ npm install react-transition-group --save-dev
+```
+
+### 2. Import in your chosen view (I picked `Home.js`):
+```
+import { CSSTransition } from 'react-transition-group';
+```
