@@ -1,5 +1,5 @@
 # React Tutorials
-> Updated: November 9th 2019
+> Updated: November 11th 2019
 
 ## Table of Contents
 1. [Tutorial 1: A Simple Website with React, Tailwind CSS, & PostCSS](#tutorial-1)
@@ -250,4 +250,10 @@ $ npm install react-transition-group --save-dev
 ### 2. Import in your chosen view (I picked `Home.js`):
 ```
 import { CSSTransition } from 'react-transition-group';
+```
+
+### 3. Declare new consts: 
+```
+const [showVertical, setShowVertical] = useState(true),
+      [showHorizontal, setShowHorizontal] = useState(false);
 ```
